@@ -21,18 +21,29 @@ function createTrainerCard(trainers) {
      
         let name = document.createElement("p");
 
+        let ul = document.createElement("ul");
+
         card.id = trainer.id;
         add.id = trainer.id;
         name.innerText = trainer.name;
+
         card.appendChild(name);
         card.appendChild(add);
-        main.append(card);
-        listPokemon(trainer);
-    })
-}
 
-function listPokemon(trainer) {
-    trainer.pokemons.forEach(pokemon => {
-        console.log(pokemon.nickname)
+        trainer.pokemons.forEach(pokemon => {
+            let release = document.createElement("button");
+            release.className = "release";
+            release.innerText = "Release";
+            release.id = pokemon.id;
+    
+            let li = document.createElement("li");
+            li.innerText = `${pokemon.nickname} (${pokemon.species})`
+            li.appendChild(release);
+            ul.appendChild(li);
+        })
+
+ 
+        card.append(ul);
+        main.append(card);
     })
 }
